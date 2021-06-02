@@ -111,7 +111,7 @@ span { /*titre, contenu... en gras */
   text-decoration: none;
   color: white;
   border: 0px solid;
-  border-radius: 21px;
+  border-radius: 20px;
   cursor:pointer;
 }
 
