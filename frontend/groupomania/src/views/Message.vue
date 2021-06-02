@@ -1,0 +1,280 @@
+<template>
+  <main>
+    <form>
+      <div id="hautdepage"></div>
+        <div class="container1">
+          <img class="logo align-self-end" src="../assets/logo.png" alt="Logo Groupomania" />
+          <div class="BoutonDisconect">
+          <Disconect/> 
+        </div>
+        <p>
+          <small>
+            Bienvenu <i class="far fa-smile"></i> :  {{ member.username }}
+            <router-link class="redirection-profil" to="/profil">Accéder à votre Profil</router-link>
+          </small>
+        </p>
+      
+      
+        <div class="form-group">
+          <label for="inputTitle"><span>Titre</span> </label><br>
+          <input type="text" class="form-control" id="inputTitle" v-model="dataMessage.title" />
+        </div>
+        <div class="form-group">
+
+          <label for="inputContent"><span>Exprimez-vous</span></label><br>
+  <textarea id="inputContent" v-model="dataMessage.content" style="height:100px"></textarea>
+        </div>
+       <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div>
+        
+        <button @click.prevent="SendMessage" type="submit" class="btn-publier">Publier <i class="fas fa-arrow-circle-up"></i></button>
+      
+      </div>
+      <div class="container2">
+      <div class = "test"><h1>Fil d'actualité</h1>
+      <ul id="example-1">
+     <li v-for="item in posts" :key="item.id"> 
+      <span>Publié par :</span> {{ item.User.username }} le {{item.createdAt.split('T')[0]}}<br>
+      <span>Titre :</span> {{ item.title }}<br>
+      <span>Contenu</span> : {{ item.content }} <br>
+      <!-- Id du posteur : {{ item.userId }} -->
+      <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une-->
+      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary">Supprimer le Message<!--(id: {{item.id}})--> </button> </p>
+     </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
+     </ul> 
+     </div>
+     </div>
+        
+    </form>
+    <Footer/>
+  </main>
+</template>
+
+<script>
+import Disconect from '@/components/Disconect.vue'; //'j'importe ma fonction déconnexion
+import Footer from '@/components/Footer.vue';
+import axios from "axios";
+
+export default {
+  name: "Message",
+  components :{Disconect, Footer},
+  data() {
+    return {
+      dataMessage: {
+        title: null,
+        content: null,
+        selectedFile: null
+      },
+      msg: "",
+      posts: [], //je récupère les infos des messages
+      member: [], //je récupère les infos de la personnes connectée
+    };
+  },
+    async created () {
+    this.posts= (await axios.get("http://localhost:3000/api/messages")).data;//,{ // je récupère les messages postés
+
+},   
+
+mounted() { // je récupère les données du profil connecté
+      axios
+        .get("http://localhost:3000/api/auth/me", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        })
+        
+        .then(response => {
+          console.log('réponse API',response);
+          this.member = response.data
+          
+        })
+        },
+
+
+
+  methods: {
+
+ SendMessage() { //je récupère est envoie ce dont j'ai besoin pour créer un message
+  const formData = new FormData();
+  formData.append('title', this.dataMessage.title);
+  formData.append('content', this.dataMessage.content);
+  formData.append('inputFile', this.dataMessage.selectedFile);
+if (formData.get("title") !== null && formData.get("content") !== null //&& formData.get("inputFile") !== null
+        
+        //this.dataMessage.title !== null || //si le contenu n'est pas vide ja passe à la suite
+        //this.dataMessage.content !== null ||
+        //this.dataMessage.selectedFile !== null 
+      ) {
+        axios
+          .post("http://localhost:3000/api/messages", formData,{ //je récupère les éléments que je souhaite poster
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            }
+          })
+          .then(response => {
+              console.log(response);
+              document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
+          })
+          .catch(error => console.log(error));
+      } else {
+        console.log("oops !");
+      }
+
+    },
+
+  onFileChanged (event) { //me permet de charger un fichier (une image) au click
+    this.dataMessage.selectedFile = event.target.files[0];
+    console.log(this.dataMessage.selectedFile)
+  },
+
+  DeleMessage (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le message
+    axios
+          .delete("http://localhost:3000/api/messages/"+id,{data:{userIdOrder}, //je récupère les éléments que je souhaite poster
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            },
+        })
+        .then(() => {
+          window.confirm("Voulez vous vraiment supprimer cet article du panier?")
+          window.location.reload();
+        })
+        .catch(error => console.log(error));
+     
+  } 
+
+}
+};
+</script>
+
+<style scoped>
+.container1{ /*contient les inputs*/
+  background-color:#F2F2F2;/*rgba(255,192,203,0.5);*/
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px #555;
+}
+
+span { /*titre, contenu... en gras */
+  font-weight: bold;
+}
+
+.test{ /*contient le fil d'actualités et le reste des infos*/
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFAFA;
+  /*background-image: url("../assets/icon.png");*/
+  background-position: center;
+  background-size: 25%;
+}
+
+.BoutonDisconect{
+  position: absolute;
+  right: 13px;
+  top: 18px;
+}
+
+.test li{ /*liste contenant les contenus, titre...*/
+  background-color:#F2F2F2;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px #555;
+  list-style: none;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 60%;
+}
+
+
+.container1 img{ /*logo principal*/
+  width: 250px;
+  height: 50px;
+  position: absolute;
+  left: 10px;
+}
+
+.container2 img{ /*image publié par les utilisateurs */
+  width: 350px;
+  height: 340px;
+  border: 2px solid none;
+  border-radius: 20px;
+}
+
+small{ /*redirection vers la page profil*/
+  position: absolute;
+  right: 13px;
+  top: 16px;
+}
+
+#inputContent, #inputTitle, textarea{
+  border: 2px solid none;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 1px 1px 1px black;
+}
+
+#btn-sup, .btn-publier{
+  padding: 5px;
+  font-size: 15px;
+  background: linear-gradient(#9356DC,#f26896);
+  text-decoration: none;
+  color: white;
+  border: 0px solid;
+  border-radius: 20px;
+  cursor:pointer;
+}
+
+#btn-sup:hover {
+  opacity: 0.8;
+  background: linear-gradient(black,red);
+  text-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px black;
+  transition-duration: .15s;
+}
+
+.btn-publier:hover {
+  opacity: 0.8;
+  background: linear-gradient(green, black);
+  text-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px black;
+  transition-duration: .15s;
+}
+
+@media (max-width: 767px) {
+
+
+ .container1 img{
+  width: 250px;
+  height: 50px;
+  position: static;
+} 
+
+.container2 img{
+  width: 150px;
+  height: 140px;
+  border: 2px solid none;
+  border-radius: 20px;
+}
+
+.test li{
+  width: 100%;
+}
+
+.BoutonDisconect{
+  position: static;
+}
+
+small{
+  position: static;
+}
+
+Footer{
+  width: 92%;
+}
+
+}
+
+</style>
+
