@@ -10,7 +10,7 @@
         <p>
           <small>
             Bienvenu <i class="far fa-smile"></i> :  {{ member.username }}
-            <router-link class="redirection-profil" to="/profil">Accéder à votre Profil</router-link>
+            <router-link class="redirection-profil" to="/profil"><i class="fas fa-user"></i></router-link>
           </small>
         </p>
       
@@ -26,7 +26,7 @@
         </div>
        <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div>
         
-        <button @click.prevent="SendMessage" type="submit" class="btn-publier">Publier <i class="fas fa-arrow-circle-up"></i></button>
+        <button @click.prevent="SendMessage" type="submit" class="btn-publier"><i class="fas fa-arrow-circle-up"></i></button>
       
       </div>
       <div class="container2">
@@ -165,6 +165,10 @@ span { /*titre, contenu... en gras */
   /*background-image: url("../assets/icon.png");*/
   background-position: center;
   background-size: 25%;
+}
+
+.fa-arrow-circle-up{
+  font-size: 30px;
 }
 
 .BoutonDisconect{

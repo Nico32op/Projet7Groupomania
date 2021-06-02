@@ -1,5 +1,5 @@
 <template>
-    <p> <button @click.prevent="disconect" type="submit" class="btn-disconect">Déconnection</button> </p>
+    <p> <button @click.prevent="disconect" type="submit" class="btn-disconect"><i class="fas fa-power-off"></i></button> </p>
 </template>
 
 <script>
@@ -34,5 +34,9 @@ methods:{ disconect() {
   text-shadow: 2px 2px 2px black;
   box-shadow: 2px 2px 2px black;
   transition-duration: .15s;
+}
+
+.fa-power-off{
+  font-size: 30px;
 }
 </style>
