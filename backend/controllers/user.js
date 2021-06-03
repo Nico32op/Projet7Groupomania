@@ -177,19 +177,19 @@ exports.SupProfile = (req, res) => {
       if (user != null) {
         //si l'utilisateur a était correctement identifié
         //Delete de tous les posts de l'user même s'il y en a pas
-        /* models.Post.destroy({
+        models.Message.destroy({
           where: { userId: user.id },
-        }) */
-        //  .then(() => {
-        //Suppression de l'utilisateur
-        models.User.destroy({
-          //on supprime l'utilisateur trouvé dans la BDD
-          where: { id: user.id },
         })
-          .then(() => res.end()) //arrêt de la response sans fournir de donnée
-          .catch((err) => console.log(err));
-        // })
-        // .catch((err) => res.status(500).json(err));
+          .then(() => {
+            //Suppression de l'utilisateur
+            models.User.destroy({
+              //on supprime l'utilisateur trouvé dans la BDD
+              where: { id: user.id },
+            })
+              .then(() => res.end()) //arrêt de la response sans fournir de donnée
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => res.status(500).json(err));
       } else {
         res.status(401).json({ error: "Cet user n'existe pas" });
       }

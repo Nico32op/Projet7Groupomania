@@ -9,7 +9,7 @@
         </div>
         <p>
           <small>
-            Bienvenu <i class="far fa-smile"></i> :  {{ member.username }}
+            Bienvenu 😃 :  {{ member.username }}
             <router-link class="redirection-profil" to="/profil"><i class="fas fa-user"></i></router-link>
           </small>
         </p>
@@ -35,7 +35,7 @@
      <li v-for="item in posts" :key="item.id"> 
       <span>Publié par :</span> {{ item.User.username }} le {{item.createdAt.split('T')[0]}}<br>
       <span>Titre :</span> {{ item.title }}<br>
-      <span>Contenu</span> : {{ item.content }} <br>
+      <span>Contenu :</span> {{ item.content }} <br>
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary">Supprimer le Message<!--(id: {{item.id}})--> </button> </p>
@@ -159,6 +159,7 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
 
 span { /*titre, contenu... en gras */
   font-weight: bold;
+  font-size: 20px;
 }
 
 .test{ /*contient le fil d'actualités et le reste des infos*/
