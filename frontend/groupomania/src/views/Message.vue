@@ -127,6 +127,9 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
   },
 
   DeleMessage (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le message
+    if (
+        window.confirm("Voulez vous vraiment supprimer le post?")
+      )
     axios
           .delete("http://localhost:3000/api/messages/"+id,{data:{userIdOrder}, //je récupère les éléments que je souhaite poster
             headers: {
