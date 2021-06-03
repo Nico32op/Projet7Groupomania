@@ -2,7 +2,7 @@
 <main>
 <div id="hautdepage"></div>
 <div class="container1">
-  <img class="logo align-self-end" src="../assets/logo.png" alt="Logo Groupomania" />
+  <Logo/>
  <div class="BoutonDisconect"> <Disconect/> </div>
   <router-link class="redirection-message" to="/message">Accéder au fil d'actualités</router-link><br>
      <span> Pseudo :</span> {{ posts.username }}<br>
@@ -19,10 +19,12 @@
 <script>
 import Disconect from '@/components/Disconect.vue'; //j'appel ma fonction déconnexion
 import Footer from '@/components/Footer.vue';
+import Logo from '@/components/Logo.vue';
 import axios from "axios";
+
 export default {
     name: "PageProfil",
-    components :{Disconect, Footer},
+    components :{Disconect, Footer, Logo},
     data() {
         return{
         posts: [] 

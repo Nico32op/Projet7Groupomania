@@ -1,10 +1,8 @@
 <template>
   <main>
     <form>
-      <div
-        class="container1"
-      >
-        <img class="logo align-self-end" src="../assets/logo.png" alt="Logo Groupomania" /> 
+      <div class="container1">
+        <Logo/>
         <p>
           <small>
             Vous n'avez pas encore de compte,
@@ -36,10 +34,11 @@
 <script>
 import axios from "axios";
 import Footer from '@/components/Footer.vue';
+import Logo from '@/components/Logo.vue';
 
 export default {
   name: "SignUp",
-  components: {Footer},
+  components: {Footer, Logo},
   data() {
     return {
       dataLogin: {

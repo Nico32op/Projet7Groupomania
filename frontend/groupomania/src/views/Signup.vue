@@ -1,10 +1,8 @@
 <template>
   <main>
     <form>
-      <div
-        class="container1"
-      >
-        <img class="logo align-self-end" src="../assets/logo.png" alt="Logo Groupomania" />
+      <div class="container1">
+        <Logo/>
         <p>
           <small>
             Vous avez déjà un compte,
@@ -41,10 +39,11 @@
 
 import axios from "axios";
 import Footer from '@/components/Footer.vue';
+import Logo from '@/components/Logo.vue';
 
 export default {
   name: "SignUp",
-  components: {Footer},
+  components: {Footer, Logo},
   data() {
     return {
       dataSignup: { //on initialise les éléments suivants qui sont vides pour le moment et seront "remplis" grâce à v-model
