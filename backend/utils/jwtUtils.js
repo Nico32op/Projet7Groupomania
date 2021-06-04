@@ -1,7 +1,8 @@
 let jwt = require("jsonwebtoken");
+require("dotenv").config(); //permet de cacher le mots de passe autres utilisateurs sur github (enregistré dans .env)
 
 module.exports = {
-  tokenSign: "RANDOM_TOKEN_SECRET",
+  tokenSign: process.env.SECRET_TOKEN,
   generateToken: function (user) {
     return jwt.sign(
       //permet de signer notre token

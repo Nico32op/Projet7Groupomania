@@ -15,7 +15,7 @@ const limiter = rateLimit({
   max: 100, //nbr requêtes (erreur) autorisés
 });
 
-require("dotenv").config(); //permet de cacher le mots de passe et le users de la Base de donnée aux autres utilisateurs (enregistré dans .env)
+require("dotenv").config(); //permet de cacher le mots de passe autres utilisateurs sur github (enregistré dans .env)
 const app = express(); //permet de créer une application express
 
 app.use((req, res, next) => {
