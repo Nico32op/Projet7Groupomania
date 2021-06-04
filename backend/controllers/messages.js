@@ -9,7 +9,6 @@ const { title } = require("process");
 
 const TITLE_LIMIT = 2;
 const CONTENT_LIMIT = 4;
-const ITEMS_LIMIT = 50;
 
 exports.creationobjet = (req, res, next) => {
   // Getting auth header

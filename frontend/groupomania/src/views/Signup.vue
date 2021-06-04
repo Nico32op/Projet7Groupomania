@@ -58,13 +58,13 @@ export default {
   methods: {
     sendSignup() {
       //const regexPassword = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/
-      const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
-      const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
+      /* const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
+      const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/; */
       if (
         (this.dataSignup.email !== null || //si les éléments suivant ne sont pas vides et que la regex est ok on passe à la suite
         this.dataSignup.username !== null ||
-        this.dataSignup.password !== null) &&
-        (regexEmail.test(this.dataSignup.email) && usernameRegex.test(this.dataSignup.username))
+        this.dataSignup.password !== null) 
+        // (regexEmail.test(this.dataSignup.email) && usernameRegex.test(this.dataSignup.username))
       ) {
         axios
           .post("http://localhost:3000/api/auth/signup", this.dataSignup)

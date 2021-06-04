@@ -10,7 +10,7 @@
         <p>
           <small>
             Bienvenu 😃 :  {{ member.username }}
-            <router-link class="redirection-profil" to="/profil"><i class="fas fa-user"></i></router-link>
+            <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><i class="fas fa-user"></i></router-link>
           </small>
         </p>
       
@@ -24,9 +24,10 @@
           <label for="inputContent"><span>Exprimez-vous</span></label><br>
   <textarea id="inputContent" v-model="dataMessage.content" style="height:100px"></textarea>
         </div>
+        <label for="inputFile"><span class="cacher">aaaa</span></label>
        <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div>
         
-        <button @click.prevent="SendMessage" type="submit" class="btn-publier"><i class="fas fa-arrow-circle-up"></i></button>
+        <button @click.prevent="SendMessage" type="submit" class="btn-publier"><span class="cacher">aaaa</span><i class="fas fa-arrow-circle-up"></i></button>
       
       </div>
       <div class="container2">
@@ -137,7 +138,6 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
             },
         })
         .then(() => {
-          window.confirm("Voulez vous vraiment supprimer cet article du panier?")
           window.location.reload();
         })
         .catch(error => console.log(error));
@@ -155,6 +155,11 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
   border: 2px solid none;
   border-radius: 8px;
   box-shadow: 1px 1px 2px #555;
+}
+
+.cacher{ /*je cache le texte du bouton pour WAVE*/
+    display: none;
+
 }
 
 span { /*titre, contenu... en gras */

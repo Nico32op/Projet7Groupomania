@@ -39,7 +39,7 @@ footer {
 }
 
 footer small {
-  color: #ccc;
+  color: whitesmoke;
   letter-spacing: .025rem;
   margin-bottom: 1.5rem;
   display: block;

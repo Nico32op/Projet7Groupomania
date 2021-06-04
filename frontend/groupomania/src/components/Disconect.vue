@@ -1,5 +1,5 @@
 <template>
-    <p> <button @click.prevent="disconect" type="submit" class="btn-disconect"><i class="fas fa-power-off"></i></button> </p>
+    <p> <button @click.prevent="disconect" type="submit" class="btn-disconect"><span class="cacher">aaaa</span><i class="fas fa-power-off"></i></button> </p>
 </template>
 
 <script>
@@ -38,5 +38,9 @@ methods:{ disconect() {
 
 .fa-power-off{
   font-size: 30px;
+}
+
+.cacher{ /*je cache le texte du bouton pour WAVE*/
+  display: none;
 }
 </style>
