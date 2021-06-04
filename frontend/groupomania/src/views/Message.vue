@@ -39,7 +39,7 @@
       <span>Contenu :</span> {{ item.content }} <br>
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une-->
-      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary">Supprimer le Message<!--(id: {{item.id}})--> </button> </p>
+      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span>Supprimer le message</button> </p>
      </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
      </ul> 
      </div>
