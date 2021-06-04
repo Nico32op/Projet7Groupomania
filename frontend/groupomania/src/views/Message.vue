@@ -117,7 +117,7 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
           })
           .catch(error => console.log(error));
       } else {
-        console.log("oops !");
+        alert("Un champ de saisie est vide!");
       }
 
     },

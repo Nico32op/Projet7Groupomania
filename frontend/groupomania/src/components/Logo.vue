@@ -1,5 +1,7 @@
 <template>
+<header>
 <img class="logo align-self-end" src="../assets/logo.png" alt="Logo Groupomania" />
+</header>
 </template>
 
 <script>
