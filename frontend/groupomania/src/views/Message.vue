@@ -271,6 +271,13 @@ small{ /*redirection vers la page profil*/
   border-radius: 20px;
 }
 
+#example-1{
+  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0px;
+}
+
 .test li{
   width: 100%;
 }
