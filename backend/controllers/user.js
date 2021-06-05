@@ -33,7 +33,7 @@ exports.signup = (req, res, next) => {
   if (!PASSWORD_REGEX.test(password)) {
     return res.status(400).json({
       error:
-        "password invalid (must length 4 - 8 and include 1 number at least)",
+        "password invalid (au moins 8 caractères, 1 lettre minuscule, 1 majuscule et 1 chiffre)",
     });
   }
 
