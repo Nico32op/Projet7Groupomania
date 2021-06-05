@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function (models) {
     User.hasMany(models.Message, {
+      //un user peut-être lié à plusieurs messages (relation un à plusieurs)
       //association
       foreignKey: "userId",
       onDelete: "CASCADE",
