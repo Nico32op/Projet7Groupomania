@@ -16,6 +16,16 @@ exports.signup = (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 
+  let attachmentURL;
+  if (req.file != undefined) {
+    //on vérifie si il y a une image dans la requête
+    attachmentURL = `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`;
+  } else {
+    attachmentURL == null;
+  }
+
   if (email == null || username == null || password == null) {
     return res.status(400).json({ error: "missing parametersjj" });
   }
@@ -70,6 +80,7 @@ exports.signup = (req, res, next) => {
           username: username,
           password: bcryptedPassword,
           isAdmin: 0,
+          attachementuser: attachmentURL,
         })
           .then(function (newUser) {
             done(newUser);
@@ -159,7 +170,7 @@ exports.Profiluser = (req, res, next) => {
   console.log(id);
   //let userId = utils.getUserId(req.headers.authorization);
   models.User.findOne({
-    attributes: ["id", "email", "username", "isAdmin"], //les éléments que l'on souhaite afficher
+    attributes: ["id", "email", "username", "isAdmin", "attachementuser"], //les éléments que l'on souhaite afficher
     where: { id: id }, // récupère les infos grâce l'user id précisé dans le token
   })
     .then((user) => res.status(200).json(user))

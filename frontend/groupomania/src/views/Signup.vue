@@ -28,6 +28,8 @@
             v-model="dataSignup.password"
           />
         </div>
+        <label for="inputFile"><span class="cacher">aaaa</span></label>
+       <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div>
         <button @click.prevent="sendSignup" type="submit" class="btn-signup">Enregistrez-vous</button>
       </div>
     </form>
@@ -49,7 +51,8 @@ export default {
       dataSignup: { //on initialise les éléments suivants qui sont vides pour le moment et seront "remplis" grâce à v-model
         username: null,
         email: null,
-        password: null
+        password: null,
+        selectedFile:null
       },
       msg: ""
     };
@@ -57,17 +60,23 @@ export default {
 
   methods: {
     sendSignup() {
+      const formData = new FormData();
+  formData.append('username', this.dataSignup.username);
+  formData.append('email', this.dataSignup.email);
+  formData.append('password', this.dataSignup.password);
+  formData.append('inputFile', this.dataSignup.selectedFile);
+if (formData.get("email") !== null && formData.get("username") !== null && formData.get("password") !== null) 
       //const regexPassword = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/
       /* const regexEmail = /^[a-z0-9!#$ %& '*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&' * +/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/g;
       const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/; */
-      if (
+   /*    if (
         (this.dataSignup.email !== null || //si les éléments suivant ne sont pas vides et que la regex est ok on passe à la suite
         this.dataSignup.username !== null ||
         this.dataSignup.password !== null) 
         // (regexEmail.test(this.dataSignup.email) && usernameRegex.test(this.dataSignup.username))
-      ) {
+      ) */ {
         axios
-          .post("http://localhost:3000/api/auth/signup", this.dataSignup)
+          .post("http://localhost:3000/api/auth/signup", formData)
           .then(response => {
             console.log(response); //une fois le compte enregistré on remet les inputs "à 0"
             //Réinitialisation
@@ -80,7 +89,17 @@ export default {
       } else {
         alert("oops ! Un problème est survenue avec vos saisies");
       }
-    }
+    },
+
+  onFileChanged (event) { //me permet de charger un fichier (une image) au click
+    this.dataSignup.selectedFile = event.target.files[0];
+    console.log(this.dataSignup.selectedFile)
+  }
+
+
+
+
+
   }
 };
 </script>

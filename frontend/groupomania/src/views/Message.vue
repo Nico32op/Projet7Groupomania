@@ -142,8 +142,8 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
         })
         .catch(error => console.log(error));
      
-  } 
-
+  }
+  
 }
 };
 </script>
@@ -156,6 +156,15 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
   border-radius: 8px;
   box-shadow: 1px 1px 2px #555;
 }
+
+.form{display:none;}
+.form:target{display:block;}
+
+
+
+
+
+
 
 .cacher{ /*je cache le texte du bouton pour WAVE*/
     display: none;
