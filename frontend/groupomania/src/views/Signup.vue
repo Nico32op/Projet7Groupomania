@@ -29,7 +29,7 @@
           />
         </div>
         <label for="inputFile"><span class="cacher">aaaa</span></label>
-       <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div>
+       <div class="btn-upload"> <input name="inputFile" type="file" class="upload" id="inputFile" @change="onFileChanged"/></div><br>
         <button @click.prevent="sendSignup" type="submit" class="btn-signup">Enregistrez-vous</button>
       </div>
     </form>
@@ -116,6 +116,10 @@ main{
 
 span { /*titre, contenu... en gras */
   font-weight: bold;
+}
+
+.cacher{ /*je cache le texte du bouton pour WAVE*/
+    display: none;
 }
 
 .btn-signup{

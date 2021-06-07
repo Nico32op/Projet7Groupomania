@@ -9,8 +9,8 @@
         </div>
         <p>
           <small>
-            Bienvenu 😃 :  {{ member.username }}
-            <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><i class="fas fa-user"></i></router-link>
+            Bienvenue {{ member.username }} 😃<!-- <p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p> -->
+            <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p></router-link>
           </small>
         </p>
       
@@ -157,18 +157,14 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
   box-shadow: 1px 1px 2px #555;
 }
 
-.form{display:none;}
-.form:target{display:block;}
-
-
-
-
-
-
+.container1 .photoprofil{
+   height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
 
 .cacher{ /*je cache le texte du bouton pour WAVE*/
     display: none;
-
 }
 
 span { /*titre, contenu... en gras */
@@ -192,7 +188,7 @@ span { /*titre, contenu... en gras */
 .BoutonDisconect{
   position: absolute;
   right: 13px;
-  top: 18px;
+  top: 45px;
 }
 
 .test li{ /*liste contenant les contenus, titre...*/
@@ -226,7 +222,7 @@ span { /*titre, contenu... en gras */
 small{ /*redirection vers la page profil*/
   position: absolute;
   right: 13px;
-  top: 16px;
+  top: 26px;
 }
 
 #inputContent, #inputTitle, textarea{
