@@ -9,9 +9,9 @@
      <li v-for="item in posts" :key="item.id"> 
       <span>Pseudo :</span> {{ item.username }}<br>
       <span>Email :</span> {{ item.email }}<br>
-      <!-- Id du posteur : {{ item.userId }} -->
+      
       <p v-if="item.attachementuser" > <img :src="item.attachementuser" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une  -->
-      </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
+      </li> 
      </ul> 
      </div>
      </div>

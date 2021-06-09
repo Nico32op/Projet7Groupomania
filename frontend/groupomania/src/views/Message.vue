@@ -34,9 +34,10 @@
       <div class = "test"><h1>Fil d'actualité</h1>
       <ul id="example-1">
      <li v-for="item in posts" :key="item.id"> 
-      <span>Publié par :</span> {{ item.User.username }} le {{item.createdAt.split('T')[0]}}<br>
-      <span>Titre :</span> {{ item.title }}<br>
-      <span>Contenu :</span> {{ item.content }} <br>
+      <span>{{ item.title }}<br></span>
+      <img class="photoprofil" :src="item.User.attachementuser" alt="..."  /><br>
+      <i>Publié par <strong>{{ item.User.username }}</strong> le {{item.createdAt.split('T')[0]}}<br><br></i>
+      <div class="contenu"> {{ item.content }} <br></div>
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span>Supprimer le message</button> </p>
@@ -96,14 +97,11 @@ mounted() { // je récupère les données du profil connecté
 
  SendMessage() { //je récupère est envoie ce dont j'ai besoin pour créer un message
   const formData = new FormData();
-  formData.append('title', this.dataMessage.title);
+  formData.append('title', this.dataMessage.title); //.append créé une clé de valeur en récupérant la valeur des inputs (name = 'title' value='this.dataMessage...')
   formData.append('content', this.dataMessage.content);
   formData.append('inputFile', this.dataMessage.selectedFile);
 if (formData.get("title") !== null && formData.get("content") !== null //&& formData.get("inputFile") !== null
-        
-        //this.dataMessage.title !== null || //si le contenu n'est pas vide ja passe à la suite
-        //this.dataMessage.content !== null ||
-        //this.dataMessage.selectedFile !== null 
+     //.get renvoie la valeur associé a une clé créé précédement (ex: valeur de 'title' est le resulat de this.datamessage.title)   
       ) {
         axios
           .post("http://localhost:3000/api/messages", formData,{ //je récupère les éléments que je souhaite poster
@@ -157,10 +155,17 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
   box-shadow: 1px 1px 2px #555;
 }
 
-.container1 .photoprofil{
+.container1 .photoprofil{ /*photo profil de la page profil perso*/
    height: 50px;
   width: 50px;
   border-radius: 50px;
+}
+
+.container2 .photoprofil{ /*photo profil de la personne qui poste le message*/
+  height: 65px;
+  width: 65px;
+  border-radius: 50px;
+  margin-top: 8px;
 }
 
 .cacher{ /*je cache le texte du bouton pour WAVE*/
@@ -169,6 +174,10 @@ if (formData.get("title") !== null && formData.get("content") !== null //&& form
 
 span { /*titre, contenu... en gras */
   font-weight: bold;
+  font-size: 25px;
+}
+
+.contenu{ /*texte des messages*/
   font-size: 20px;
 }
 
