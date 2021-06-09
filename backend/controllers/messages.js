@@ -157,10 +157,10 @@ exports.supprimerobjet = (req, res, next) => {
 exports.affichetouslesprod = (req, res, next) => {
   models.Message.findAll({
     include: [
-      //inclu la relation direct avec la table User
+      //inclu la relation direct avec la table message
       {
         model: models.User,
-        attributes: ["id", "username", "isAdmin"], //on ne veut afficher que le username
+        attributes: ["id", "username", "isAdmin", "attachementuser"], //on ne veut afficher que le username
       },
     ],
     order: [["createdAt", "DESC"]], //ordre dans lequel on souhaite afficher les msg

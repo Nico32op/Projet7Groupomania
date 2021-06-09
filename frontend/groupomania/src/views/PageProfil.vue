@@ -2,9 +2,8 @@
 <main>
 <div id="hautdepage"></div>
 <div class="container1">
-  <Logo/>
+  <router-link class="redirection-message" to="/message"><Logo/></router-link>
  <div class="BoutonDisconect"> <Disconect/> </div>
-  <router-link class="redirection-message" to="/message">Accéder au fil d'actualités</router-link><br>
      <span> Pseudo :</span> {{ posts.username }}<br>
      <span> Email :</span> {{ posts.email }}<br>
      <span> Numéro d'identifiant :</span> {{ posts.id }} <br>
@@ -95,16 +94,10 @@ span{
   font-weight: bold;
 }
 
-.redirection-message{
-  position: absolute;
-  right: 12px;
-  top: 10px;
-}
-
 .BoutonDisconect{
   position: absolute;
   right: 12px;
-  top: 15px;
+  top: 1px;
 }
 
 .btn-supcompte{

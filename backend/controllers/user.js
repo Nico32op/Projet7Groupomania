@@ -177,6 +177,24 @@ exports.Profiluser = (req, res, next) => {
     .catch((error) => res.status(500).json(error));
 };
 
+exports.AllProfiluser = (req, res, next) => {
+  models.User.findAll({
+    include: [
+      //inclu la relation direct avec la table User
+      {
+        model: models.Message,
+        attributes: ["id"], //on ne veut afficher que le username
+      },
+    ],
+  })
+    .then((found) => {
+      res.status(200).json({ found });
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
+};
+
 exports.SupProfile = (req, res) => {
   //récupération de l'id de l'user dans le token
   let headerAuth = req.headers["authorization"];

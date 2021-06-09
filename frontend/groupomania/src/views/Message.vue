@@ -12,8 +12,8 @@
             Bienvenue {{ member.username }} 😃<!-- <p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p> -->
             <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p></router-link>
           </small>
+          <router-link class="redirection-allprofil" to="/allprofil"><span class="cacher">aaaa</span><i class="fas fa-users"></i></router-link>
         </p>
-      
       
         <div class="form-group">
           <label for="inputTitle"><span>Titre</span> </label><br>
@@ -187,7 +187,7 @@ span { /*titre, contenu... en gras */
 
 .BoutonDisconect{
   position: absolute;
-  right: 13px;
+  right: 18px;
   top: 45px;
 }
 
@@ -221,8 +221,15 @@ span { /*titre, contenu... en gras */
 
 small{ /*redirection vers la page profil*/
   position: absolute;
-  right: 13px;
+  right: 10px;
   top: 26px;
+}
+
+.redirection-allprofil{
+   position: absolute;
+  right: 150px;
+  top: 66px;
+  font-size: 35px;
 }
 
 #inputContent, #inputTitle, textarea{
@@ -285,6 +292,13 @@ small{ /*redirection vers la page profil*/
 
 .test li{
   width: 100%;
+}
+
+.redirection-allprofil{
+  position: static;
+  right: 150px;
+  top: 66px;
+  font-size: 35px;
 }
 
 .BoutonDisconect{
