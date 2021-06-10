@@ -39,8 +39,8 @@
       <i>Publié par <strong>{{ item.User.username }}</strong> le {{item.createdAt.split('T')[0]}}<br><br></i>
       <div class="contenu"> {{ item.content }} <br></div>
       <!-- Id du posteur : {{ item.userId }} -->
-      <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une-->
-      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span>Supprimer le message</button> </p>
+      <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
+      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>
      </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
      </ul> 
      </div>
@@ -247,6 +247,15 @@ small{ /*redirection vers la page profil*/
   border: none;
   outline: none;
   box-shadow: 1px 1px 1px black;
+}
+
+.fa-trash-alt{ /*logo corbeille*/
+font-size: 30px;
+
+}
+
+#btn-sup{
+margin-bottom: 10px;
 }
 
 #btn-sup, .btn-publier{
