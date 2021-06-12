@@ -66,7 +66,7 @@ export default {
           })
           .catch(error => console.log(error));
       } else {
-        console.log("oops !");
+        alert("oops !");
       }
     }
   }

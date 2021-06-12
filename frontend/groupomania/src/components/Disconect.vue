@@ -6,7 +6,8 @@
 export default {
   name: 'Disconect',
 
-methods:{ disconect() {
+methods:{ 
+  disconect() {
   localStorage.clear();
   document. location. href="http://localhost:8080/login";
 }
