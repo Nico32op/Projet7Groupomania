@@ -10,7 +10,7 @@
       <span>Pseudo :</span> {{ item.username }}<br>
       <span>Email :</span> {{ item.email }}<br>
       
-      <p v-if="item.attachementuser" > <img :src="item.attachementuser" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une  -->
+      <p> <img :src="item.attachementuser" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une  -->
       </li> 
      </ul> 
      </div>

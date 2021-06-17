@@ -4,7 +4,6 @@
       <small>&copy;2021 <strong>Groupomania</strong>, Tous droit réservé</small>
       <nav class="footer-nav">
         <a href="#hautdepage">Retour en haut</a>
-        <!-- <router-link class="redirection-profil" to="/profil">Accéder à votre Profil</router-link> -->
       </nav>
     </div>
   </footer>

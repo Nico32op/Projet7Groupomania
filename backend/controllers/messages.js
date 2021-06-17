@@ -1,7 +1,7 @@
 //le dossier de controllers contiendra le contenu de toutes les routes (post,get..) pour rendre plus lisible le dossier routes
 
 const { json } = require("body-parser");
-let models = require("../models"); // on appel notre modèle de shéma mongoose
+let models = require("../models"); // on appel notre modèle de shéma
 let jwtUtils = require("../utils/jwtUtils");
 let asyncLib = require("async"); //permet de mettre en place des waterfall
 const fs = require("fs"); //donne accès aux fonctions qui nous permettent de modifier le système de fichiers (supprimer les images)
@@ -52,7 +52,7 @@ exports.creationobjet = (req, res, next) => {
             done(null, userFound);
           })
           .catch(function (err) {
-            return res.status(500).json({ error: "unable to verify user" }); //cas ou l'utilisateur n'est pas trouvé
+            return res.status(500).json({ error: "user à vérifier" }); //cas ou l'utilisateur n'est pas trouvé
           });
       },
       function (userFound, done) {
@@ -70,7 +70,7 @@ exports.creationobjet = (req, res, next) => {
             done(newMessage);
           });
         } else {
-          res.status(404).json({ error: "user not found" });
+          res.status(404).json({ error: "user pas trouvé" });
         }
       },
     ],
@@ -80,30 +80,12 @@ exports.creationobjet = (req, res, next) => {
         console.log(newMessage);
         return res.status(201).json(newMessage);
       } else {
-        return res.status(500).json({ error: "cannot post message" });
+        return res
+          .status(500)
+          .json({ error: "message n'a pu être enregistré" });
       }
     }
   );
-};
-
-exports.modifobjet = (req, res, next) => {
-  //repond a une requete PUT(modifier)
-  const messageObject = req.file //cette constante vérifie si il y a un fichier (image) à modifier ou non
-    ? {
-        ...JSON.parse(req.body.message), //si l y a une image on la gère ici
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          //on récupère le http (req.protocol), la locallisation du server (localhost:3000) et ou se trouve le dossier on enregistre (images), cela créé l'url ou sera visible l'image
-          req.file.filename // filename récupère le nom du fichier et sera la dernière partie de l'url
-        }`,
-      }
-    : { ...req.body }; //sinon on le traite "normalement" en récupérant le corps de la requête
-  message
-    .updateOne(
-      { _id: req.params.id },
-      { ...messageObject, _id: req.params.id } //on veut être certain que l'id reçu et le même que celui de la base de données
-    ) //updateone permet de mofier un élément du tableau de la base de données
-    .then(() => res.status(200).json({ message: "Objet modifié !" }))
-    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.supprimerobjet = (req, res, next) => {

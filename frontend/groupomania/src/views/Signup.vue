@@ -65,7 +65,7 @@ export default {
   formData.append('email', this.dataSignup.email);
   formData.append('password', this.dataSignup.password);
   formData.append('inputFile', this.dataSignup.selectedFile);
-if (formData.get("email") !== null && formData.get("username") !== null && formData.get("password") !== null) 
+if (formData.get("email") !== null && formData.get("username") !== null && formData.get("password") !== null && formData.get("inputFile") !== null) 
 {
         axios
           .post("http://localhost:3000/api/auth/signup", formData)
@@ -88,11 +88,7 @@ if (formData.get("email") !== null && formData.get("username") !== null && formD
     console.log(this.dataSignup.selectedFile)
   }
 
-
-
-
-
-  }
+}
 };
 </script>
 

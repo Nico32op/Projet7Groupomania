@@ -9,7 +9,7 @@
         </div>
         <p>
           <small>
-            Bienvenue {{ member.username }} 😃<!-- <p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p> -->
+            Bienvenue {{ member.username }} 😃
             <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p></router-link>
           </small>
           <router-link class="redirection-allprofil" to="/allprofil"><span class="cacher">aaaa</span><i class="fas fa-users"></i></router-link>
@@ -40,8 +40,8 @@
       <div class="contenu"> {{ item.content }} <br></div>
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
-      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>
-     </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
+      <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
+      </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
      </ul> 
      </div>
      </div>
@@ -100,7 +100,7 @@ mounted() { // je récupère les données du profil connecté
   formData.append('title', this.dataMessage.title); //.append créé une clé de valeur en récupérant la valeur des inputs (name = 'title' value='this.dataMessage...')
   formData.append('content', this.dataMessage.content);
   formData.append('inputFile', this.dataMessage.selectedFile);
-if (formData.get("title") !== null && formData.get("content") !== null //&& formData.get("inputFile") !== null
+if (formData.get("title") !== null && formData.get("content") !== null
      //.get renvoie la valeur associé a une clé créé précédement (ex: valeur de 'title' est le resulat de this.datamessage.title)   
       ) {
         axios

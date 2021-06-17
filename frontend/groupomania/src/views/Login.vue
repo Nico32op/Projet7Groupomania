@@ -27,6 +27,14 @@
         <button @click.prevent="logIn" type="submit" class="btn-connexion">Connexion</button>
       </div>
     </form>
+
+      <p v-if="dataLogin.errors.length">
+    <b>Please correct the following error(s):</b>
+   
+  </p>
+    
+    
+    
     <Footer/>
   </main>
 </template>
@@ -43,30 +51,30 @@ export default {
     return {
       dataLogin: {
         email: null,
-        password: null
+        password: null,
+      // },
+      errors: []
       },
-      msg: ""
     };
   },
 
   methods: {
     logIn() {
-      if (
-        //TO DO : Vérifier par Regex
-        this.dataLogin.email !== null ||
+  
+    if (
+        this.dataLogin.email !==null||
         this.dataLogin.password !== null
-      ) {
+      )  {
         axios
           .post("http://localhost:3000/api/auth/login", this.dataLogin)
           .then(response => {
               console.log(response);
               localStorage.setItem('token',response.data.token)
-              document. location. href="http://localhost:8080/message";
-            //location.replace(location.origin) 
+              document. location. href="http://localhost:8080/message"; 
           })
           .catch(error => console.log(error));
       } else {
-        alert("oops !");
+        console.log("oops !");
       }
     }
   }

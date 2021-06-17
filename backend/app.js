@@ -48,7 +48,7 @@ app.use(
   })
 );
 
-app.use(bodyParser.json()); //permettra de traduire le corps de la reqûete reçu (POST) au format json //on définit l'url/chemin principal qu'utilisera notre routeur (sauces.js)
+app.use(bodyParser.json()); //permettra de traduire le corps de la reqûete reçu (POST) au format json //on définit l'url/chemin principal qu'utilisera notre routeur
 app.use(helmet()); //collection de middleware pour Express qui aide à sécuriser les applications en définissant certaines headers HTTP
 app.use(limiter); // application du package pour éviter attaque de force brute (permet de tester plusieurs mdp pour un utilisateur)
 app.use("/images", express.static(path.join(__dirname, "images"))); //permet de charger les fichiers qui sont dans le repertoire images, gère les images de façon statique

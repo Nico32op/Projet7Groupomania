@@ -27,17 +27,17 @@ exports.signup = (req, res, next) => {
   }
 
   if (email == null || username == null || password == null) {
-    return res.status(400).json({ error: "missing parametersjj" });
+    return res.status(400).json({ error: "paramètres manquant" });
   }
 
   if (username.length >= 13 || username.length <= 4) {
-    return res
-      .status(400)
-      .json({ error: "wrong username (must be length 5 - 12)" });
+    return res.status(400).json({
+      error: "erreur saisie username (nombres de caractères requis 5 - 12)",
+    });
   }
 
   if (!EMAIL_REGEX.test(email)) {
-    return res.status(400).json({ error: "email is not valid" });
+    return res.status(400).json({ error: "email pas ok" });
   }
 
   if (!PASSWORD_REGEX.test(password)) {
@@ -59,7 +59,9 @@ exports.signup = (req, res, next) => {
             done(null, userFound);
           })
           .catch(function (err) {
-            return res.status(500).json({ error: "unable to verify user" });
+            return res
+              .status(500)
+              .json({ error: "vérifier info de l'utilisateur" });
           });
       },
       function (userFound, done) {
@@ -70,7 +72,7 @@ exports.signup = (req, res, next) => {
             done(null, userFound, bcryptedPassword);
           }); //on place toujours done(null) tant qu'on est toujours dans le waterfall
         } else {
-          return res.status(409).json({ error: "user already exist" });
+          return res.status(409).json({ error: "utilisateur existe déjà" });
         }
       },
       function (userFound, bcryptedPassword, done) {
@@ -109,7 +111,7 @@ exports.login = (req, res, next) => {
   let email = req.body.email;
   let password = req.body.password;
   if (email == null || password == null) {
-    return res.status(400).json({ error: "missing parameters" });
+    return res.status(400).json({ error: "paramètres manquant" });
   }
 
   asyncLib.waterfall(
@@ -123,7 +125,9 @@ exports.login = (req, res, next) => {
             done(null, userFound);
           })
           .catch(function (err) {
-            return res.status(500).json({ error: "unable to verify user" });
+            return res
+              .status(500)
+              .json({ error: "vérifiter info de l'utilisateur" });
           });
       },
       function (userFound, done) {
@@ -138,14 +142,16 @@ exports.login = (req, res, next) => {
             }
           );
         } else {
-          return res.status(404).json({ error: "user not exist in DB" });
+          return res
+            .status(404)
+            .json({ error: "utilisateur existe pas dans la base de donnée" });
         }
       },
       function (userFound, resBycrypt, done) {
         if (resBycrypt) {
           done(userFound);
         } else {
-          return res.status(403).json({ error: "invalid password" });
+          return res.status(403).json({ error: "password faux" });
         }
       },
     ],
@@ -156,7 +162,9 @@ exports.login = (req, res, next) => {
           token: utils.generateToken(userFound),
         });
       } else {
-        return res.status(500).json({ error: "cannot log on user" });
+        return res
+          .status(500)
+          .json({ error: "impossible de connecter l'utilisateur" });
       }
     }
   );
@@ -180,10 +188,10 @@ exports.Profiluser = (req, res, next) => {
 exports.AllProfiluser = (req, res, next) => {
   models.User.findAll({
     include: [
-      //inclu la relation direct avec la table User
+      //inclu la relation direct avec la table Message
       {
         model: models.Message,
-        attributes: ["id"], //on ne veut afficher que le username
+        attributes: ["id"], //on ne veut afficher que l'id
       },
     ],
   })
