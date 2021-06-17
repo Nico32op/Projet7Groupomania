@@ -14,7 +14,6 @@
           </small>
           <router-link class="redirection-allprofil" to="/allprofil"><span class="cacher">aaaa</span><i class="fas fa-users"></i></router-link>
         </p>
-      
         <div class="form-group">
           <label for="inputTitle"><span>Titre</span> </label><br>
           <input type="text" class="form-control" id="inputTitle" v-model="dataMessage.title" />
@@ -114,9 +113,7 @@ if (formData.get("title") !== null && formData.get("content") !== null
               document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
           })
           .catch(error => console.log(error));
-      } else {
-        alert("Un champ de saisie est vide!");
-      }
+      } 
 
     },
 

@@ -3,6 +3,7 @@
     <form>
       <div class="container1">
         <Logo/>
+        <span id='msg' class="msg">{{ msg }}</span>
         <p>
           <small>
             Vous avez déjà un compte,
@@ -67,6 +68,8 @@ export default {
   formData.append('inputFile', this.dataSignup.selectedFile);
 if (formData.get("email") !== null && formData.get("username") !== null && formData.get("password") !== null && formData.get("inputFile") !== null) 
 {
+  this.msg = "Email/Username/Password Vide";
+      } {
         axios
           .post("http://localhost:3000/api/auth/signup", formData)
           .then(response => {
@@ -78,9 +81,7 @@ if (formData.get("email") !== null && formData.get("username") !== null && formD
             document. location. href="http://localhost:8080/login";
           })
           .catch(error => console.log(error));
-      } else {
-        alert("oops ! Un problème est survenue avec vos saisies");
-      }
+      } 
     },
 
   onFileChanged (event) { //me permet de charger un fichier (une image) au click
