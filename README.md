@@ -1,6 +1,6 @@
 # Projet7Groupomania
 
-Après avoir cloner ce repo : 
+Après avoir cloner le repo depuis la branche "master" : 
 
 Lancement du front (Vue CLI) :
 - cd front-end
