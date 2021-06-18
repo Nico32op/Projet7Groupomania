@@ -144,6 +144,10 @@ img{
   height: 50px;
 }
 
+#msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
+  color: red;
+}
+
 Footer{
   position: absolute;
   top: 480px;

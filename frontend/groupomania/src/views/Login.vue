@@ -3,6 +3,7 @@
     <form>
       <div class="container1">
         <Logo/>
+        <span id='msg' class="msg">{{ msg }}</span>
         <p>
           <small>
             Vous n'avez pas encore de compte,
@@ -28,14 +29,7 @@
       </div>
     </form>
 
-      <p v-if="dataLogin.errors.length">
-    <b>Please correct the following error(s):</b>
-   
-  </p>
-    
-    
-    
-    <Footer/>
+   <Footer/>
   </main>
 </template>
 
@@ -52,9 +46,8 @@ export default {
       dataLogin: {
         email: null,
         password: null,
-      // },
-      errors: []
       },
+      msg: ""
     };
   },
 
@@ -64,7 +57,9 @@ export default {
     if (
         this.dataLogin.email !==null||
         this.dataLogin.password !== null
-      )  {
+      ) {
+  this.msg = "Email/Password Vide/Pas correct";
+      }   {
         axios
           .post("http://localhost:3000/api/auth/login", this.dataLogin)
           .then(response => {
@@ -73,9 +68,7 @@ export default {
               document. location. href="http://localhost:8080/message"; 
           })
           .catch(error => console.log(error));
-      } else {
-        console.log("oops !");
-      }
+      } 
     }
   }
 };
@@ -128,6 +121,10 @@ span { /*titre, contenu... en gras */
   text-shadow: 2px 2px 2px black;
   box-shadow: 2px 2px 2px black;
   transition-duration: .15s;
+}
+
+#msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
+  color: red;
 }
 
 Footer{
