@@ -71,8 +71,18 @@ export default {
     };
   },
     async created () {
-    this.posts= (await axios.get("http://localhost:3000/api/messages")).data;//,{ // je récupère les messages postés
+    //this.posts= (await axios.get("http://localhost:3000/api/messages")).data;//,{ // je récupère les messages postés
 
+
+ axios
+        .get("http://localhost:3000/api/messages")
+        
+        .then(response => {
+          console.log(response);
+          this.posts = response.data
+          
+        })
+        .catch(error => console.log(error));
 },   
 
 mounted() { // je récupère les données du profil connecté

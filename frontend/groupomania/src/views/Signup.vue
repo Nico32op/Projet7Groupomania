@@ -3,7 +3,6 @@
     <form>
       <div class="container1">
         <Logo/>
-        <span id='msg' class="msg">{{ msg }}</span>
         <p>
           <small>
             Vous avez déjà un compte,
@@ -66,10 +65,8 @@ export default {
   formData.append('email', this.dataSignup.email);
   formData.append('password', this.dataSignup.password);
   formData.append('inputFile', this.dataSignup.selectedFile);
-if (formData.get("email") == null || formData.get("username") == null || formData.get("password") == null || formData.get("inputFile") == null) 
-{
-  this.msg = "Email/Username/Password(au moins 8 caractères, 1 lettre minuscule, 1 majuscule et 1 chiffre) ou Vide";
-      } {
+if (formData.get("email") !== null & formData.get("username") !== null & formData.get("password") !== null & formData.get("inputFile") !== null) 
+ {
         axios
           .post("http://localhost:3000/api/auth/signup", formData)
           .then(response => {

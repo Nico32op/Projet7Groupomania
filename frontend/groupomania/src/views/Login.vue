@@ -3,7 +3,6 @@
     <form>
       <div class="container1">
         <Logo/>
-        <span id='msg' class="msg">{{ msg }}</span>
         <p>
           <small>
             Vous n'avez pas encore de compte,
@@ -39,7 +38,7 @@ import Footer from '@/components/Footer.vue';
 import Logo from '@/components/Logo.vue';
 
 export default {
-  name: "SignUp",
+  name: "Login",
   components: {Footer, Logo},
   data() {
     return {
@@ -55,11 +54,9 @@ export default {
     logIn() {
   
     if (
-        this.dataLogin.email ==null||
-        this.dataLogin.password == null
-      ) {
-  this.msg = "Email/Password Vide";
-      }   {
+        this.dataLogin.email !==null ||
+        this.dataLogin.password !== null
+      )    {
         axios
           .post("http://localhost:3000/api/auth/login", this.dataLogin)
           .then(response => {
