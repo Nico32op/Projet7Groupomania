@@ -99,7 +99,9 @@ exports.signup = (req, res, next) => {
           userId: newUser.id, //si tout est on créé l'utilisateur avec son identifiant
         });
       } else {
-        return res.status(500).json({ error: "cannot add user" });
+        return res
+          .status(500)
+          .json({ error: "utilisateur impossible a créer" });
       }
     }
   );

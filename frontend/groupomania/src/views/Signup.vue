@@ -66,9 +66,9 @@ export default {
   formData.append('email', this.dataSignup.email);
   formData.append('password', this.dataSignup.password);
   formData.append('inputFile', this.dataSignup.selectedFile);
-if (formData.get("email") !== null && formData.get("username") !== null && formData.get("password") !== null && formData.get("inputFile") !== null) 
+if (formData.get("email") == null || formData.get("username") == null || formData.get("password") == null || formData.get("inputFile") == null) 
 {
-  this.msg = "Email/Username/Password Vide";
+  this.msg = "Email/Username/Password(au moins 8 caractères, 1 lettre minuscule, 1 majuscule et 1 chiffre) ou Vide";
       } {
         axios
           .post("http://localhost:3000/api/auth/signup", formData)

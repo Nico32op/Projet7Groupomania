@@ -55,10 +55,10 @@ export default {
     logIn() {
   
     if (
-        this.dataLogin.email !==null||
-        this.dataLogin.password !== null
+        this.dataLogin.email ==null||
+        this.dataLogin.password == null
       ) {
-  this.msg = "Email/Password Vide/Pas correct";
+  this.msg = "Email/Password Vide";
       }   {
         axios
           .post("http://localhost:3000/api/auth/login", this.dataLogin)

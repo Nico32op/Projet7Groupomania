@@ -88,6 +88,7 @@ mounted() { // je récupère les données du profil connecté
           this.member = response.data
           
         })
+        .catch(error => console.log(error));
         },
 
 
@@ -113,7 +114,9 @@ if (formData.get("title") !== null && formData.get("content") !== null
               document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
           })
           .catch(error => console.log(error));
-      } 
+      }  else {
+        console.log("oops !");
+      }
 
     },
 

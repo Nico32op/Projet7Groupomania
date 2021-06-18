@@ -30,12 +30,12 @@ exports.creationobjet = (req, res, next) => {
   }
   if (title == null || content == null) {
     //titre et contenu ne doivent pas être vide
-    return res.status(400).json({ error: "missing parameters" });
+    return res.status(400).json({ error: "paramètes manquants" });
   }
 
   if (title.length <= TITLE_LIMIT || content.length <= CONTENT_LIMIT) {
     //titre et caractère doivent pas être inférieur à un nombre de caractère donné
-    return res.status(400).json({ error: "invalid parameters" });
+    return res.status(400).json({ error: "paramètes pas ok" });
   }
 
   asyncLib.waterfall(

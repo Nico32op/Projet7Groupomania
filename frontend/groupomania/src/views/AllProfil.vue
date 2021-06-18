@@ -43,6 +43,7 @@ import axios from "axios";
           this.posts = response.data.found
           
         })
+        .catch(error => console.log(error));
         }
 };
       </script>

@@ -45,6 +45,7 @@ export default {
           this.posts = response.data
           
         })
+        .catch(error => console.log(error));
         },
 
     methods:{
