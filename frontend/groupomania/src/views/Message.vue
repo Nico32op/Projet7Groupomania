@@ -70,21 +70,7 @@ export default {
       member: [], //je récupère les infos de la personnes connectée
     };
   },
-    async created () {
-    //this.posts= (await axios.get("http://localhost:3000/api/messages")).data;//,{ // je récupère les messages postés
-
-
- axios
-        .get("http://localhost:3000/api/messages")
-        
-        .then(response => {
-          console.log(response);
-          this.posts = response.data
-          
-        })
-        .catch(error => console.log(error));
-},   
-
+   
 mounted() { // je récupère les données du profil connecté
       axios
         .get("http://localhost:3000/api/auth/me", {
@@ -99,7 +85,18 @@ mounted() { // je récupère les données du profil connecté
           
         })
         .catch(error => console.log(error));
-        },
+        //},
+
+        axios
+        .get("http://localhost:3000/api/messages") //je récupère les messages postés
+        
+        .then(response => {
+          console.log(response);
+          this.posts = response.data
+          
+        })
+        .catch(error => console.log(error));
+},   
 
 
 
