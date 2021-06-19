@@ -12,7 +12,7 @@ const session = require("cookie-session"); //
 //constante à utiliser avec le package rateLimit
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // = 15 minutes
-  max: 1000, //nbr requêtes (erreur) autorisés
+  max: 5000, //nbr requêtes (erreur) autorisés
 });
 
 require("dotenv").config(); //permet de cacher le mots de passe autres utilisateurs sur github (enregistré dans .env)
