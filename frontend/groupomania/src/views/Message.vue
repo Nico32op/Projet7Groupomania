@@ -40,14 +40,14 @@
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
-      <span>{{ item.Comments.content }}<br></span>
+      <!--partie création commentaire -->
       <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
                 <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
-      <ul>
+      <ul> <!--partie affichage commentaire -->
       <li v-for="comment in item.Comments" :key="comment.id"> 
-       <span>{{ comment.User.username }}<br></span>
-       <span>{{ comment.content }}<br></span>
+       <i>{{ comment.User.username }} le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
+       {{ comment.content }}<br>
       </li>
       </ul> -
       
