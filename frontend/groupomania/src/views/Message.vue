@@ -44,11 +44,11 @@
       <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
                 <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
-    <!--   <ul>
-      <li v-for="item in comments" :key="item.id"> 
-       <span>{{ item.content }}<br></span>
+      <ul>
+      <li v-for="comment in item.Comments" :key="comment.id"> 
+       <span>{{ comment.content }}<br></span>
       </li>
-      </ul> -->
+      </ul> -
       
       
       
