@@ -157,3 +157,20 @@ exports.affichetouslesprod = (req, res, next) => {
     })
     .catch((err) => res.status(500).json(err));
 };
+
+exports.creationComment = (req, res, next) => {
+  let headerAuth = req.headers["authorization"];
+  let userId = jwtUtils.getUserId(headerAuth);
+  models.Comment.create({
+    messageId: req.body.messageId,
+    userId: userId,
+    content: req.body.comment,
+  })
+    .then(
+      (
+        comment // console.log(comment))
+      ) => res.status(201).json({ comment })
+    )
+    .catch((error) => console.log(error));
+  //  res.status(500).json(error))
+};

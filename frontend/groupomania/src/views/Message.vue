@@ -40,6 +40,16 @@
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
+      
+      <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="comment" 
+                placeholder="Insérer votre commentaire..."></textarea>
+                <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
+      
+      
+      
+      
+      
+      
       </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
      </ul> 
      </div>
@@ -65,6 +75,7 @@ export default {
         content: null,
         selectedFile: null
       },
+      comment:null,
       msg: "",
       posts: [], //je récupère les infos des messages
       member: [], //je récupère les infos de la personnes connectée
@@ -147,7 +158,27 @@ if (formData.get("title") !== null && formData.get("content") !== null
         })
         .catch(error => console.log(error));
      
-  }
+  },
+
+
+    createComment(messageId) {
+  
+    if (
+        this.comment !==null 
+      )     axios
+          .post("http://localhost:3000/api/messages/comments", this.comment, {data:{messageId},  //je récupère les éléments que je souhaite poster
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            }
+          })
+          .then(response => {
+              console.log(response);
+              document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
+          })
+          .catch(error => console.log(error));
+      }
+
+
   
 }
 };
