@@ -46,6 +46,7 @@
                 <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
       <ul>
       <li v-for="comment in item.Comments" :key="comment.id"> 
+       <span>{{ comment.User.username }}<br></span>
        <span>{{ comment.content }}<br></span>
       </li>
       </ul> -

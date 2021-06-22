@@ -146,7 +146,7 @@ exports.affichetouslesprod = (req, res, next) => {
       },
       {
         model: models.Comment,
-        attributes: ["id", "content"], //on veut afficher les commentaires
+        attributes: ["id", "content"], include: [models.User]//on veut afficher les commentaires
       },
     ],
     order: [["createdAt", "DESC"]], //ordre dans lequel on souhaite afficher les msg
