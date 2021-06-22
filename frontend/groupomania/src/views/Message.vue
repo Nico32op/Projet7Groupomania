@@ -42,7 +42,8 @@
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
       <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
       <!--partie création commentaire -->
-      <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="dataComment.content" 
+     
+      <textarea type="text" id="comment" name="comment" class="form-control"  v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
                 <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
       <ul> <!--partie affichage commentaire -->
