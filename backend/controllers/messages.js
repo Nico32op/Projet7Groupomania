@@ -144,6 +144,10 @@ exports.affichetouslesprod = (req, res, next) => {
         model: models.User,
         attributes: ["id", "username", "isAdmin", "attachementuser"], //on ne veut afficher que le username
       },
+      {
+        model: models.Comment,
+        attributes: ["id", "content"], //on veut afficher les commentaires
+      },
     ],
     order: [["createdAt", "DESC"]], //ordre dans lequel on souhaite afficher les msg
   })
