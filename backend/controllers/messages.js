@@ -64,7 +64,7 @@ exports.creationobjet = (req, res, next) => {
             title: title,
             content: content,
             attachement: attachmentURL,
-            likes: 0,
+            likes: 0, //PROJET A TRAVAILLER DANS LE FUTUR
           }).then(function (newMessage) {
             //si tout est ok newMessage est l'objet que l'on vien de créer
             done(newMessage);
