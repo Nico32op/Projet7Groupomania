@@ -165,7 +165,7 @@ if (formData.get("title") !== null && formData.get("content") !== null
   
     if (
         this.comment !==null 
-      )     axios
+      )  {   axios
           .post("http://localhost:3000/api/messages/comments", this.comment, {data:{messageId},  //je récupère les éléments que je souhaite poster
             headers: {
               Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
@@ -177,6 +177,7 @@ if (formData.get("title") !== null && formData.get("content") !== null
           })
           .catch(error => console.log(error));
       }
+    }
 
 
   
