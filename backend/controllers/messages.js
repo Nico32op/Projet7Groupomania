@@ -146,8 +146,8 @@ exports.affichetouslesprod = (req, res, next) => {
       },
       {
         model: models.Comment,
-        attributes: ["id", "content","createdAt"], include: [models.User]//on veut afficher les commentaires
-      },
+        attributes: ["id", "userId", "content","createdAt"], include: [models.User]//on veut afficher les commentaires
+      },//j'inclus la table user dans la table commentaires
     ],
     order: [["createdAt", "DESC"]], //ordre dans lequel on souhaite afficher les msg
   })
@@ -180,28 +180,41 @@ exports.creationComment = (req, res, next) => {
   //  res.status(500).json(error))
 };
 
-exports.affichComment = (req, res, next) =>{
-  models.Comment.findAll({
-      include: [{
-      model: models.User,
-      attributes: ['id', 'username']
-  }]
-  })
-  .then(items => 
-      {
-      const Comments = [];
-      items.forEach(item => 
-          Comments.push({
-              "id": item.id ,
-              "content": item.content,
-              "messageId": item.messageId,
-              "username" : item.User.username ,
-              "userId": item.userId,
-              "createdAt": item.createdAt
-          })
-      )      
-      return res.status(200).json({Comments})
-      })
 
-  .catch(error =>  res.status(500).json(error))
-  }
+
+
+exports.supprimeComment = (req, res, next) => { //suppresion commentaire
+  //identification du demandeur
+  let userOrder = req.body.userIdOrder;
+  let headerAuth = req.headers["authorization"];
+  let userId = jwtUtils.getUserId(headerAuth);
+  console.log(userId);
+  models.User.findOne({
+    attributes: ["id", "email", "username", "isAdmin"],
+    where: { id: userId },
+  })
+    .then((user) => {
+      //Vérification que le demandeur est soit l'admin soit le poster
+      if (user && (user.isAdmin == true || user.id == userOrder)) {
+        //userOrder et l'id de la personne qui créé le message (envouyer par le front)
+        console.log("Suppression commentaire avec l'id :", req.params.id); //récupère l'id en provenance de l'url
+        models.Comment.findOne({
+          where: { id: req.params.id },
+        })
+          .then((postFind) => {
+     
+              //si il n'y a pas d'image on supprime le message simplement
+              models.Comment.destroy({
+                where: { id: postFind.id },
+              })
+                .then(() => res.end())
+                .catch((err) => res.status(500).json(err));
+            
+          })
+          .catch((err) => res.status(500).json(err));
+      } else {
+        res.status(403).json("Utilisateur non autorisé à supprimer ce commentaire");
+      }
+    })
+    .catch((error) => res.status(500).json(error));
+};

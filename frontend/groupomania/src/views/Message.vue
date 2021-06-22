@@ -40,6 +40,7 @@
       <!-- Id du posteur : {{ item.userId }} -->
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
+      <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
       <!--partie création commentaire -->
       <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
@@ -48,12 +49,13 @@
       <li v-for="comment in item.Comments" :key="comment.id"> 
        <i>{{ comment.User.username }} le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
        {{ comment.content }}<br>
-      </li>
+       <p v-if="member.id==comment.userId || member.isAdmin"> <button @click.prevent="DeleteComment(comment.id, comment.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button></p>
+      </li><!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le commentaire ou un admin-->
       </ul> -
       
       
       
-      </li> <!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le message ou un admin-->
+      </li> 
      </ul> 
      </div>
      </div>
@@ -84,10 +86,8 @@ export default {
       //messageId:messageId
       },
       
-      msg: "",
       posts: [], //je récupère les infos des messages
       member: [], //je récupère les infos de la personnes connectée
-      comments:[] //je récupère les commentaires
     };
   },
    
@@ -117,18 +117,6 @@ mounted() { // je récupère les données du profil connecté
         })
         .catch(error => console.log(error));
 },   
-
-   created() {
-      axios.get("http://localhost:3000/api/messages/comments")
-         .then(response => {
-          console.log(response);
-          this.comments = response.data.Comments
-          
-        })
-        .catch(error => console.log(error));
-   },
-
-
 
   methods: {
 
@@ -204,7 +192,25 @@ if (formData.get("title") !== null && formData.get("content") !== null
           })
           .catch(error => console.log(error));
       }
-    }
+    },
+
+
+      DeleteComment (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le message
+    if (
+        window.confirm("Voulez vous vraiment supprimer le commentaire?")
+      )
+    axios
+          .delete("http://localhost:3000/api/messages/comments/"+id,{data:{userIdOrder}, //je récupère les éléments que je souhaite poster
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            },
+        })
+        .then(() => {
+          window.location.reload();
+        })
+        .catch(error => console.log(error));
+     
+  },
 
 
   
