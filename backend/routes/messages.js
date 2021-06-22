@@ -13,5 +13,6 @@ router.post("/", auth, multer, messagescontrollers.creationobjet); // on place e
 router.delete("/:id", auth, messagescontrollers.supprimerobjet);
 router.get("/", messagescontrollers.affichetouslesprod);
 router.post("/comments", auth, messagescontrollers.creationComment);
+router.get("/comments", auth, messagescontrollers.affichComment);
 
 module.exports = router;

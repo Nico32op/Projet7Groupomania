@@ -41,7 +41,7 @@
       <p v-if="item.attachement" > <img :src="item.attachement" alt="..."  /></p> <!-- j'affiche l'image uniquement si il y en a une-->
       <p v-if="member.id==item.userId || member.isAdmin">  <button @click.prevent="DeleMessage(item.id, item.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button> </p>    
       
-      <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="comment" 
+      <textarea type="text" id="comment" name="comment" rows="2" class="form-control" v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
                 <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
       
@@ -75,10 +75,16 @@ export default {
         content: null,
         selectedFile: null
       },
-      comment:null,
+
+      dataComment:{
+      content:null,
+      //messageId:messageId
+      },
+      
       msg: "",
       posts: [], //je récupère les infos des messages
       member: [], //je récupère les infos de la personnes connectée
+      comments:[] //je récupère les commentaires
     };
   },
    
@@ -108,6 +114,16 @@ mounted() { // je récupère les données du profil connecté
         })
         .catch(error => console.log(error));
 },   
+
+   created() {
+      axios.get("http://localhost:3000/messages/comments")
+         .then(response => {
+          console.log(response);
+          this.comments = response.data.Comments
+          
+        })
+        .catch(error => console.log(error));
+   },
 
 
 
@@ -164,9 +180,17 @@ if (formData.get("title") !== null && formData.get("content") !== null
     createComment(messageId) {
   
     if (
-        this.comment !==null 
-      )  {   axios
-          .post("http://localhost:3000/api/messages/comments", this.comment, {data:{messageId},  //je récupère les éléments que je souhaite poster
+        this.dataComment.comment !==null 
+      )  
+      console.log(this.dataComment)
+      {   axios
+          .post("http://localhost:3000/api/messages/comments", 
+          {
+          content:this.dataComment.content, 
+          messageId:messageId
+          },
+          
+          {  //je récupère les éléments que je souhaite poster
             headers: {
               Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
             }

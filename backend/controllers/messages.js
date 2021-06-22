@@ -161,10 +161,11 @@ exports.affichetouslesprod = (req, res, next) => {
 exports.creationComment = (req, res, next) => {
   let headerAuth = req.headers["authorization"];
   let userId = jwtUtils.getUserId(headerAuth);
+  console.log(req.body)
   models.Comment.create({
     messageId: req.body.messageId,
     userId: userId,
-    content: req.body.comment,
+    content: req.body.content,
   })
     .then(
       (
@@ -174,3 +175,29 @@ exports.creationComment = (req, res, next) => {
     .catch((error) => console.log(error));
   //  res.status(500).json(error))
 };
+
+exports.affichComment = (req, res, next) =>{
+  models.Comment.findAll({
+      include: [{
+      model: models.User,
+      attributes: ['id', 'username']
+  }]
+  })
+  .then(items => 
+      {
+      const Comments = [];
+      items.forEach(item => 
+          Comments.push({
+              "id": item.id ,
+              "content": item.content,
+              "messageId": item.messageId,
+              "username" : item.User.username ,
+              "userId": item.userId,
+              "createdAt": item.createdAt
+          })
+      )      
+      return res.status(200).json({Comments})
+      })
+
+  .catch(error =>  res.status(500).json(error))
+  }
