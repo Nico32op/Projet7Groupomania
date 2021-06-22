@@ -54,7 +54,6 @@ export default {
         password: null,
         selectedFile:null
       },
-      msg: ""
     };
   },
 

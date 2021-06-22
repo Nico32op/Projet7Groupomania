@@ -85,7 +85,6 @@ export default {
 
       dataComment:{
       content:null,
-      //messageId:messageId
       },
       
       posts: [], //je récupère les infos des messages
@@ -190,14 +189,14 @@ if (formData.get("title") !== null && formData.get("content") !== null
           })
           .then(response => {
               console.log(response);
-              document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite mon message
+              document. location. href="http://localhost:8080/message"; //si tout est ok je recharge la page et j'affiche ensuite le fil d'actualité
           })
           .catch(error => console.log(error));
       }
     },
 
 
-      DeleteComment (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le message
+      DeleteComment (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le commentaire
     if (
         window.confirm("Voulez vous vraiment supprimer le commentaire?")
       )
