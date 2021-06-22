@@ -45,15 +45,16 @@
      
       <textarea type="text" id="comment" name="comment" class="form-control"  v-model="dataComment.content" 
                 placeholder="Insérer votre commentaire..."></textarea>
-                <a v-on:click="createComment(item.id)"><i class="far fa-paper-plane" title="Envoyer"></i></a>
+                <a v-on:click="createComment(item.id)"><i class="fas fa-comment" title="Envoyer"></i></a>
+      <div class="container3">
       <ul> <!--partie affichage commentaire -->
       <li v-for="comment in item.Comments" :key="comment.id"> 
-       <i>{{ comment.User.username }} le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
+       <i><strong>{{ comment.User.username }}</strong> le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
        {{ comment.content }}<br>
        <p v-if="member.id==comment.userId || member.isAdmin"> <button @click.prevent="DeleteComment(comment.id, comment.userId)" id="btn-sup" type="submit" class="btn btn-primary"><span class="cacher">aaaa</span><i class="fas fa-trash-alt"></i></button></p>
       </li><!--le bouton Supprimer s'affiche uniquement si la personne connectée est la personne qui a publié le commentaire ou un admin-->
       </ul> -
-      
+      </div>
       
       
       </li> 
@@ -286,6 +287,11 @@ span { /*titre, contenu... en gras */
   width: 60%;
 }
 
+.container3 li{
+  margin-top: 10px;
+  background-color: white;
+}
+
 
 .container1 img{ /*logo principal*/
   width: 250px;
@@ -325,6 +331,12 @@ small{ /*redirection vers la page profil*/
 .fa-trash-alt{ /*logo corbeille*/
 font-size: 30px;
 
+}
+
+.fa-comment{ /*envoie de commentaire*/
+  font-size: 30px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 #btn-sup{
