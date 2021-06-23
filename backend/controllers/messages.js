@@ -113,6 +113,10 @@ exports.supprimerobjet = (req, res, next) => {
               console.log("youpi", filename);
               fs.unlink(`images/${filename}`, () => {
                 //si il y en a une on l'a selectionne avant de la supprimer avec le message
+                models.Comment.destroy({ //supprimie les commentaires en même temps que les messages
+                  where: { messageId: postFind.id },
+                }),
+                
                 models.Message.destroy({
                   where: { id: postFind.id },
                 })
