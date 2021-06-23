@@ -121,6 +121,9 @@ exports.supprimerobjet = (req, res, next) => {
               });
             } else {
               //si il n'y a pas d'image on supprime le message simplement
+              models.Comment.destroy({ //supprimie les commentaires en même temps que les messages
+                where: { messageId: postFind.id },
+              }),
               models.Message.destroy({
                 where: { id: postFind.id },
               })
