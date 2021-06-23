@@ -219,6 +219,9 @@ exports.SupProfile = (req, res) => {
         //Delete de tous les posts de l'user même s'il y en a pas
         models.Message.destroy({
           where: { userId: user.id },
+        }),
+        models.Comment.destroy({
+          where: { userId: user.id },
         })
           .then(() => {
             //Suppression de l'utilisateur
