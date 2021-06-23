@@ -196,14 +196,13 @@ exports.supprimeComment = (req, res, next) => { //suppresion commentaire
     .then((user) => {
       //Vérification que le demandeur est soit l'admin soit le poster
       if (user && (user.isAdmin == true || user.id == userOrder)) {
-        //userOrder et l'id de la personne qui créé le message (envouyer par le front)
+        //userOrder et l'id de la personne qui créé le commentaire (envouyer par le front)
         console.log("Suppression commentaire avec l'id :", req.params.id); //récupère l'id en provenance de l'url
         models.Comment.findOne({
           where: { id: req.params.id },
         })
           .then((postFind) => {
      
-              //si il n'y a pas d'image on supprime le message simplement
               models.Comment.destroy({
                 where: { id: postFind.id },
               })

@@ -196,7 +196,7 @@ if (formData.get("title") !== null && formData.get("content") !== null
     },
 
 
-      DeleteComment (id, userIdOrder) { //'jenvoie l'id du message selectionné ainsi que l'id de la personne qui a créé le commentaire
+      DeleteComment (id, userIdOrder) { //'jenvoie l'id du commentaire selectionné ainsi que l'id de la personne qui a créé le commentaire
     if (
         window.confirm("Voulez vous vraiment supprimer le commentaire?")
       )

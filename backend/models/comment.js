@@ -1,22 +1,3 @@
-/* "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
-  class Comment extends Model {
-    static associate(models) {}
-  }
-  Comment.init(
-    {
-      messageId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
-      content: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "Comment",
-    }
-  );
-  return Comment;
-}; */
 
  "use strict";
 module.exports = (sequelize, DataTypes) => {
@@ -36,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     Comment.belongsTo(models.Message, {
       //plusieurs commentaires peuvent-être lié à un user
       foreignKey: "messageId",
-      onDelete: "CASCADE", // Si on supprime un message, on supprime ses réponses //
+      onDelete: "CASCADE", 
     });
   };
   return Comment;
