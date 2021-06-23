@@ -47,7 +47,7 @@
                 placeholder="Insérer votre commentaire..."></textarea>
                 <a v-on:click="createComment(item.id)"><i class="fas fa-comment" title="Envoyer"></i></a>
       <div class="container3">
-      <ul> <!--partie affichage commentaire -->
+      <ul id="example-2"> <!--partie affichage commentaire -->
       <li v-for="comment in item.Comments" :key="comment.id"> 
        <i><strong>{{ comment.User.username }}</strong> le {{comment.createdAt.split('T')[0]}} à {{comment.createdAt.slice(11,16)}}</i><br>
        {{ comment.content }}<br>
@@ -385,7 +385,7 @@ margin-bottom: 10px;
   border-radius: 20px;
 }
 
-#example-1{
+#example-1, #example-2{
   margin: auto;
   margin-right: auto;
   margin-left: auto;
