@@ -26,6 +26,7 @@ Installation ORM Sequelize + création et migrations des modèles des tables ver
 
 Depuis le terminal backend du dossier on saisie dans l'ordre:
 
+-npm install -g sequelize-cli,
 -npm install --save sequelize, 
 -npm install mysql --save,
 -npm install mysql2 --save,
