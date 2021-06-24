@@ -35,7 +35,8 @@ Depuis le terminal backend du dossier on saisie dans l'ordre:
 - créer localement la base de donnée (ex: depuis le terminal "MySQL Commande Line Client" on saisie : create database database_development_groupomania;)
 - ensuite on migre les tables créées vers la base de donnée : sequelize db:migrate
 - les tables sont désormais disponible dans la base de donnée 
-IMPORTANT : le mot de passe de la base de donnée est masqué dans le dossier : models/index.js
+
+IMPORTANT : le mot de passe de la base de donnée (config.json) est masqué dans le dossier : models/index.js
 
 Le serveur MySQL doit être activé en même temps que le serveur backend (localhost:3000) et frontend (localhost:8080)
 
