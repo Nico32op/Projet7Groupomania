@@ -6,6 +6,7 @@ Création Backend :
 Depuis le terminal backend:
 
  -ajouter npm init,  pour démarrer le projet (point d’entré server.js), cela créé également un fichier package.json qui contient les package qu’on aura installé avec npm
+
 Installation des différents package : 
 - npm install express --save (framework de node)
 - npm install helmet --save (sécurité)
