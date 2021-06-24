@@ -55,7 +55,7 @@ Après avoir fini de configurer votre projet Vue Cli selon vos préférences, il
 - cd front-end
 - cd groupomania
 - npm run serve
-- aller ensuite sur "http://localhost:8080/"
+- aller ensuite sur "http://localhost:8080/signup"
 
 Technologies utilisées :
 Vue CLI (+VueRouter) / Node.JS / Express / ORM Sequelize (SQL)
