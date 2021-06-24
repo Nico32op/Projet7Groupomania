@@ -26,9 +26,9 @@ Installation ORM Sequelize + création et migrations des modèles des tables ver
 
 Depuis le terminal backend du dossier on saisie dans l'ordre:
 
--npm install --save sequelize 
--npm install mysql --save
--npm install mysql2 --save
+-npm install --save sequelize, 
+-npm install mysql --save,
+-npm install mysql2 --save,
 
 -sequelize init
 - créer localement (depuis le terminal backend) les tables de la base de donnée en s'inspirant de mon dossier "models" (ex : depuis le terminal backend on saisie: sequelize model:create –attributes «email:string….  » --name User, création de la table User)
