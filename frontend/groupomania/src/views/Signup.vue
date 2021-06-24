@@ -27,7 +27,7 @@
             class="form-control"
             id="inputPassword"
             v-model="dataSignup.password"
-            placeholder="1minus, 1majus, 8caractères"
+            placeholder="1min, 1maj, 1spéc, 8car(min)"
           />
         </div>
         <label for="inputFile"><span class="cacher">aaaa</span></label>
