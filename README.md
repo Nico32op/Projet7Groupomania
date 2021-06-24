@@ -3,8 +3,9 @@
 Après avoir installer NodeJs, on clone le repo depuis la branche "master" et ensuite:
 
 Création Backend : 
+Depuis le terminal backend:
 
- -ajoute npm init pour démarrer le projet (point d’entré server.js), cela créé également un fichier package.json qui contient les package qu’on aura installé avec npm
+ -ajouter npm init,  pour démarrer le projet (point d’entré server.js), cela créé également un fichier package.json qui contient les package qu’on aura installé avec npm
 Installation des différents package : 
 - npm install express --save (framework de node)
 - npm install helmet --save (sécurité)
