@@ -34,7 +34,7 @@
       <ul id="example-1">
      <li v-for="item in posts" :key="item.id"> 
       <span>{{ item.title }}<br></span>
-      <img class="photoprofil" :src="item.User.attachementuser" alt="..."  /><br>
+     <p v-if="item.User.attachementuser"> <img class="photoprofil" :src="item.User.attachementuser" alt="..."  /><br></p>
       <i>Publié par <strong>{{ item.User.username }}</strong> le {{item.createdAt.split('T')[0]}} à {{item.createdAt.slice(11,16)}}<br><br></i>
       <div class="contenu"> {{ item.content }} <br></div>
       <!-- Id du posteur : {{ item.userId }} -->
