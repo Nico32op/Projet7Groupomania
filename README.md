@@ -36,6 +36,11 @@ Depuis le terminal backend du dossier on saisie dans l'ordre:
 - créer localement la base de donnée (ex: depuis le terminal "MySQL Commande Line Client" on saisie : create database database_development_groupomania;)
 - ensuite on migre les tables créées vers la base de donnée : sequelize db:migrate
 - les tables sont désormais disponible dans la base de donnée 
+- 
+Pour modifier un utilisateur en administrateur directement depuis le terminal MySQL on saisie : 
+UPDATE users
+SET isAdmin = ‘1‘
+WHERE id = numéro id du user qu’on souhaite modifer en administrateur; 
 
 IMPORTANT : le mot de passe de la base de donnée (config.json) est masqué dans le dossier : models/index.js
 
