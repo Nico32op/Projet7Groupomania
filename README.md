@@ -32,7 +32,7 @@ UPDATE users
 SET isAdmin = ‘1‘,
 WHERE id = numéro id du user qu’on souhaite modifer en administrateur; 
 
-IMPORTANT : le mot de passe de la base de donnée ainsi que son nom (config.json) sont masqués dans le dossier : models/index.js
+IMPORTANT : le mot de passe de la base de donnée est masqué dans le dossier : models/index.js
 
 Le serveur MySQL doit être activé en même temps que le serveur backend (localhost:3000) et frontend (localhost:8080)
 
