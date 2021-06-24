@@ -10,7 +10,7 @@
       <span>Pseudo :</span> {{ item.username }}<br>
       <span>Email :</span> {{ item.email }}<br>
       
-      <p> <img :src="item.attachementuser" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une  -->
+      <p v-if="item.attachementuser" > <img :src="item.attachementuser" alt="..."  /></p><br> <!-- j'affiche l'image uniquement si il y en a une  -->
       </li> 
      </ul> 
      </div>
@@ -36,8 +36,12 @@ import axios from "axios";
     },
        mounted() { // je récupère les données du profil connecté
       axios
-        .get("http://localhost:3000/api/auth/all")
-        
+        .get("http://localhost:3000/api/auth/all",
+         {  //je récupère les éléments que je souhaite poster
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            }
+          })
         .then(response => {
           console.log('réponse API',response);
           this.posts = response.data.found

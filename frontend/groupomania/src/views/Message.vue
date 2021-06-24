@@ -10,7 +10,7 @@
         <p>
           <small>
             Bienvenue {{ member.username }} 😃
-            <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p></router-link>
+            <router-link class="redirection-profil" to="/profil"><span class="cacher">aaaa</span><p v-if="member.attachementuser"> <img class="photoprofil" :src="member.attachementuser" alt="..."  /></p><p class="profilsansphoto" v-else>MON PROFIL</p> </router-link>
           </small>
           <router-link class="redirection-allprofil" to="/allprofil"><span class="cacher">aaaa</span><i class="fas fa-users"></i></router-link>
         </p>
@@ -109,7 +109,13 @@ mounted() { // je récupère les données du profil connecté
         //},
 
         axios
-        .get("http://localhost:3000/api/messages") //je récupère les messages postés
+        .get("http://localhost:3000/api/messages", //je récupère les messages postés
+        
+        {  
+            headers: {
+              Authorization: "Bearer " + window.localStorage.getItem("token") //je récupère la clé présent dans le local storage
+            }
+          })
         
         .then(response => {
           console.log(response);
@@ -263,8 +269,18 @@ span { /*titre, contenu... en gras */
   background-size: 25%;
 }
 
+.profilsansphoto{
+  color: blue;
+  position: absolute;
+  right: 60px;
+}
+
 .fa-arrow-circle-up{
   font-size: 30px;
+}
+
+.fas-fa-users{
+  size: 40px;
 }
 
 .BoutonDisconect{
@@ -394,6 +410,10 @@ margin-bottom: 10px;
 
 .test li{
   width: 100%;
+}
+
+.profilsansphoto{
+  position: static;
 }
 
 .redirection-allprofil{

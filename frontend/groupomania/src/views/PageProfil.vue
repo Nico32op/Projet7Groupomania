@@ -7,7 +7,7 @@
      <span> Pseudo :</span> {{ posts.username }}<br>
      <span> Email :</span> {{ posts.email }}<br>
      <span> Numéro d'identifiant :</span> {{ posts.id }} <br>
-     <p> <img class="photoprofil" :src="posts.attachementuser" alt="..."  /></p><br>
+     <p v-if="posts.attachementuser"> <img class="photoprofil" :src="posts.attachementuser" alt="..."  /></p><br>
      <p v-if="posts.isAdmin==true" ><span> Profil administrateur :</span> {{ posts.isAdmin }} <br></p>
       <!-- le profil administrateur ne s'affiche que si la personne connectée est admin -->
       <p>  <button @click.prevent="SupProfile" type="submit" class="btn-supcompte">Supprimer le compte</button> </p>

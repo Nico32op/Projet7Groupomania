@@ -11,7 +11,7 @@ const multer = require("../middleware/multer-config"); // on importe la fonction
 //IMPORTANT on remplace app. par router. car maintenant on a les routes sur le routeur
 router.post("/", auth, multer, messagescontrollers.creationobjet); // on place en argument la fonction qui sécurisera les différentes routes (auth)
 router.delete("/:id", auth, messagescontrollers.supprimerobjet);
-router.get("/", messagescontrollers.affichetouslesprod);
+router.get("/", auth, messagescontrollers.affichetouslesprod);
 router.post("/comments", auth, messagescontrollers.creationComment);
 router.delete("/comments/:id", auth, messagescontrollers.supprimeComment);
 

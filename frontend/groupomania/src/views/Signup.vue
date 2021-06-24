@@ -2,6 +2,7 @@
   <main>
     <form>
       <div class="container1">
+        <span class="msg">{{ msg }}</span>
         <Logo/>
         <p>
           <small>
@@ -17,7 +18,7 @@
         </div>
         <div class="form-group">
           <label for="inputUsername"><span>Username </span></label>
-          <input type="text" class="form-control" id="inputUsername" v-model="dataSignup.username" />
+          <input type="text" class="form-control" id="inputUsername" v-model="dataSignup.username" placeholder="entre 5 et 12 caractères" />
         </div>
         <div class="form-group">
           <label for="inputPassword"><span>Password </span></label>
@@ -26,6 +27,7 @@
             class="form-control"
             id="inputPassword"
             v-model="dataSignup.password"
+            placeholder="1minus, 1majus, 8caractères"
           />
         </div>
         <label for="inputFile"><span class="cacher">aaaa</span></label>
@@ -54,6 +56,7 @@ export default {
         password: null,
         selectedFile:null
       },
+      msg:""
     };
   },
 
@@ -65,6 +68,8 @@ export default {
   formData.append('password', this.dataSignup.password);
   formData.append('inputFile', this.dataSignup.selectedFile);
 if (formData.get("email") !== null & formData.get("username") !== null & formData.get("password") !== null & formData.get("inputFile") !== null) 
+ { this.msg ="ERREUR DE SAISIE"}
+ 
  {
         axios
           .post("http://localhost:3000/api/auth/signup", formData)
@@ -140,7 +145,7 @@ img{
   height: 50px;
 }
 
-#msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
+.msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
   color: red;
 }
 

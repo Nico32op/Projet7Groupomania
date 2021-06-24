@@ -2,6 +2,7 @@
   <main>
     <form>
       <div class="container1">
+        <span class="msg">{{ msg }}</span>
         <Logo/>
         <p>
           <small>
@@ -46,6 +47,7 @@ export default {
         email: null,
         password: null,
       },
+      msg:""
     };
   },
 
@@ -55,7 +57,9 @@ export default {
     if (
         this.dataLogin.email !==null ||
         this.dataLogin.password !== null
-      )    {
+      )    
+      { this.msg ="ERREUR DE SAISIE"}
+      {
         axios
           .post("http://localhost:3000/api/auth/login", this.dataLogin)
           .then(response => {
@@ -119,7 +123,7 @@ span { /*titre, contenu... en gras */
   transition-duration: .15s;
 }
 
-#msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
+.msg{ /*message d'alert qui s'affiche en cas d'erreur de saisie*/
   color: red;
 }
 

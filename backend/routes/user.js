@@ -7,6 +7,6 @@ const multer = require("../middleware/multer-config"); // on importe la fonction
 router.post("/signup", multer, routescontrollers.signup); // on utilise des routes post car le frontend envoie des informations des utilisateurs
 router.post("/login", routescontrollers.login);
 router.get("/me", auth, routescontrollers.Profiluser);
-router.get("/all", routescontrollers.AllProfiluser);
+router.get("/all", auth, routescontrollers.AllProfiluser);
 router.delete("/delete", auth, routescontrollers.SupProfile);
 module.exports = router;

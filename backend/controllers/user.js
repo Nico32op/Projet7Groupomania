@@ -217,6 +217,10 @@ exports.SupProfile = (req, res) => {
       if (user != null) {
         //si l'utilisateur a était correctement identifié
         models.Comment.destroy({ //permet de supprimer les commentaires lié au messages supprimés
+          where: {id: user.id}, //supprimer les commentaires posté par la personne connecté
+       }),
+
+        models.Comment.destroy({ //permet de supprimer les commentaires lié au messages supprimés
            where: {},
         }),
         models.Message.destroy({ //supprime les messages posté par la personne connecté
