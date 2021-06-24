@@ -18,6 +18,7 @@ Installation des différents package :
 - npm install multer --save (permet la récupération des images du frontend)
 - npm install body-parser --save (permet de traduire au format json les requêtes provenant du frontend)
 - npm install async --save (waterfall)
+ 
  Une fois les package installé depuis le terminal backend on saisie : nodemon server 
  Mainteant le serveur backend est créé sur "localhost:3000"
 
