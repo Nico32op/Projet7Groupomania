@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   Message.associate = function (models) {
     Message.belongsTo(models.User); //plusieurs messages peuvent-être lié à un user
 
-     Message.hasMany(models.Comment, { foreignKey: "messageId" }); 
+     Message.hasMany(models.Comment, { foreignKey: "messageId" },{ onDelete: 'cascade' } ); 
   };
   return Message;
 };

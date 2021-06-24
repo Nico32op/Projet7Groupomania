@@ -216,11 +216,10 @@ exports.SupProfile = (req, res) => {
     }).then((user) => {
       if (user != null) {
         //si l'utilisateur a était correctement identifié
-        //Delete de tous les posts de l'user même s'il y en a pas
-        models.Message.destroy({
-          where: { userId: user.id },
+        models.Comment.destroy({ //permet de supprimer les commentaires lié au messages supprimés
+           where: {},
         }),
-        models.Comment.destroy({
+        models.Message.destroy({ //supprime les messages posté par la personne connecté
           where: { userId: user.id },
         })
           .then(() => {
