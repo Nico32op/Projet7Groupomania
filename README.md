@@ -39,7 +39,7 @@ Depuis le terminal backend du dossier on saisie dans l'ordre:
 - 
 Pour modifier un utilisateur en administrateur directement depuis le terminal MySQL on saisie : 
 UPDATE users
-SET isAdmin = ‘1‘
+SET isAdmin = ‘1‘,
 WHERE id = numéro id du user qu’on souhaite modifer en administrateur; 
 
 IMPORTANT : le mot de passe de la base de donnée (config.json) est masqué dans le dossier : models/index.js
