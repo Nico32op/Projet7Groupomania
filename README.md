@@ -36,6 +36,7 @@ Depuis le terminal backend du dossier on saisie dans l'ordre:
 - ensuite on migre les tables créées vers la base de donnée : sequelize db:migrate
 - les tables sont désormais disponible dans la base de donnée 
 IMPORTANT : le mot de passe de la base de donnée est masqué dans le dossier : models/index.js
+
 Le serveur MySQL doit être activé en même temps que le serveur backend (localhost:3000) et frontend (localhost:8080)
 
 Création frontend (Vue CLI qu'il faut avoir installer auparavant) :
