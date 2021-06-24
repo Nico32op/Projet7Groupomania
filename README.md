@@ -23,6 +23,7 @@ Installation des différents package :
  Mainteant le serveur backend est créé sur "localhost:3000"
 
 Installation ORM Sequelize + création et migrations des modèles des tables vers la base de données après sa création
+
 Depuis le terminal backend du dossier on saisie dans l'ordre:
 -npm install --save sequelize 
 -npm install mysql --save
