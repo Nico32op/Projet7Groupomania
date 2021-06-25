@@ -67,7 +67,7 @@ export default {
   formData.append('email', this.dataSignup.email);
   formData.append('password', this.dataSignup.password);
   formData.append('inputFile', this.dataSignup.selectedFile);
-if (formData.get("email") !== null & formData.get("username") !== null & formData.get("password") !== null & formData.get("inputFile") !== null) 
+if (formData.get("email") !== null & formData.get("username") !== null & formData.get("password") !== null) 
  { this.msg ="ERREUR DE SAISIE"}
  
  {

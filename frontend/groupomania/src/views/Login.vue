@@ -55,9 +55,10 @@ export default {
     logIn() {
   
     if (
-        this.dataLogin.email !==null ||
-        this.dataLogin.password !== null
-      )    
+        this.dataLogin.email ==null ||
+        this.dataLogin.password ==null 
+      )
+
       { this.msg ="ERREUR DE SAISIE"}
       {
         axios
