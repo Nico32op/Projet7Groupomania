@@ -7,7 +7,7 @@ let asyncLib = require("async");
 // Constants
 const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; //au moins 8 caractères, 1 lettre minuscule, 1 majuscule 1 chiffre 1carac spécial
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@/$!%*?&])[A-Za-z\d@/$!%*?&]{8,}$/; //au moins 8 caractères, 1 lettre minuscule, 1 majuscule 1 chiffre 1carac spécial
 
 // Routes
 exports.signup = (req, res, next) => {
